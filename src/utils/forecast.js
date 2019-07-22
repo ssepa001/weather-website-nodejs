@@ -11,7 +11,11 @@ const forecast = (latitude, longitude, callback) => {
             const temp = body.currently.temperature;
             const rain = body.currently.precipProbability;
             const summary = body.daily.data[0].summary;
-            callback(undefined, summary + ' It is curently ' + temp + ' degrees out. There is a ' + rain + '% chance of rain.')
+            const data = summary + ' It is curently ' + temp + ' degrees out. There is a ' + rain*100 + '% chance of rain.' +
+                'Today\'s high is ' + body.daily.data[0].temperatureHigh + ' and the low is ' + body.daily.data[0].temperatureLow + 
+                ' degrees. Humidity is at ' + body.currently.humidity*100 + '%.'
+
+            callback(undefined, data)
         }
     })
 }
